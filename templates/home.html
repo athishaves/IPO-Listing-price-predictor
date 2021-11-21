@@ -14,21 +14,21 @@
         <form action="/predict" method="post">
 
             <label for="size">Issue Size (in Cr) : </label>
-            <input type="number" id="size" name="size" step="0.01", min="0" value="{{ size }}" autofocus>
+            <input type="number" id="size" name="size" step="0.01", min="0" value="{{ size }}" required autofocus>
             <br><br>
 
             <h4>Subscription Rates</h4>
 
             <label for="rii">Retail Individual Investor : </label>
-            <input type="number" id="rii" name="rii" step="0.01" , min="0" value="{{ rii }}">
+            <input type="number" id="rii" name="rii" step="0.01" , min="0" value="{{ rii }}" required>
             <br><br>
 
             <label for="hni">Non-Institutional Investors : </label>
-            <input type="number" id="hni" name="hni" step="0.01", min="0" value="{{ hni }}">
+            <input type="number" id="hni" name="hni" step="0.01", min="0" value="{{ hni }}" required>
             <br><br>
 
             <label for="qib">Qualified Institutional Buyer : </label>
-            <input type="number" id="qib" name="qib" step="0.01" , min="0" value="{{ qib }}">
+            <input type="number" id="qib" name="qib" step="0.01" , min="0" value="{{ qib }}" required>
             <br><br>
 
             <input type="submit" value="Predict Price">
@@ -36,7 +36,14 @@
 
         </form>
 
-        <h2>Estimated Price Gain : <span style="color:green">{{ price_gain }}</span></h2>
+        <h2>Estimated Listing Gain : <span id='gain'>{{ price_gain }} %</span></h2>
+
+        <script type="text/javascript">
+            let gain = document.getElementById('gain')
+            let profit = parseFloat(gain.innerHTML)
+            if (profit > 0) gain.style = "color:green"
+            else gain.style = "color:red"
+        </script>
 
     </body>
 </html>

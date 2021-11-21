@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.ensemble import RandomForestRegressor as RF
+from sklearn.ensemble import RandomForestRegressor as RFR
 from sklearn.model_selection import train_test_split as split
 import pickle
 
@@ -14,10 +14,10 @@ df = pd.read_csv(open('ipo_history.csv', 'r'))
 data = df.drop([headers[0], headers[1], headers[2], headers[7], headers[8], headers[9], headers[10], headers[11], headers[12], headers[13]], axis=1)
 target = df[headers[11]]
 
-x_train, x_test, y_train, y_test = split(data, target, test_size=0.2)
+x_train, x_test, y_train, y_test = split(data, target, test_size=0.15)
 
 
-model = RF(n_estimators=25)
+model = RFR(n_estimators=1000)
 
 model.fit(x_train, y_train)
 

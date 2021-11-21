@@ -7,10 +7,6 @@ response = requests.get('https://www.moneycontrol.com/ipo/ipo-historic-table')
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
-print('Classes of each table')
-for table in soup.find_all('table'):
-    print(table.get('class'))
-
 table = soup.find('table', class_='tablesorter')
 
 global headers
@@ -42,11 +38,13 @@ for row in contents:
         issue = float(columns[8].text.strip().replace(',',''))
         listing_open = float(columns[9].text.strip().replace(',',''))
         listing_close = float(columns[10].text.strip().replace(',',''))
-        listing_gains = float(columns[11].text.strip().replace(',',''))
+
+        if issue == 0: continue
+        listing_gains = round((listing_open - issue) / issue * 100, 4)
+
         cmp = float(columns[12].text.strip().replace(',',''))
         
-        if columns[13].text.strip() == '': current_gains = 0.0
-        else: current_gains = float(columns[13].text.strip().replace(',',''))
+        current_gains = float(columns[13].text.strip().replace(',',''))
 
         data.append([
             date, name, profile, size,
