@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>IPO Listing Predictor</title>
+    </head>
+    <body>
+        <h3>
+            NOTE : Prediction is based upon the history of IPO Listings. The model may not be accurate.
+        </h3>
+        <h2>Final words - Its RISKY</h2>
+        <br>
+        
+        <form action="/predict" method="post">
+
+            <label for="size">Issue Size (in Cr) : </label>
+            <input type="number" id="size" name="size" step="0.01", min="0" value="{{ size }}" autofocus>
+            <br><br>
+
+            <h4>Subscription Rates</h4>
+
+            <label for="rii">Retail Individual Investor : </label>
+            <input type="number" id="rii" name="rii" step="0.01" , min="0" value="{{ rii }}">
+            <br><br>
+
+            <label for="hni">Non-Institutional Investors : </label>
+            <input type="number" id="hni" name="hni" step="0.01", min="0" value="{{ hni }}">
+            <br><br>
+
+            <label for="qib">Qualified Institutional Buyer : </label>
+            <input type="number" id="qib" name="qib" step="0.01" , min="0" value="{{ qib }}">
+            <br><br>
+
+            <input type="submit" value="Predict Price">
+            <br><br>
+
+        </form>
+
+        <h2>Estimated Price Gain : <span style="color:green">{{ price_gain }}</span></h2>
+
+    </body>
+</html>

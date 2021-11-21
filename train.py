@@ -11,12 +11,13 @@ headers = [
 
 df = pd.read_csv(open('ipo_history.csv', 'r'))
 
-model = RF(n_estimators=10)
-
 data = df.drop([headers[0], headers[1], headers[2], headers[7], headers[8], headers[9], headers[10], headers[11], headers[12], headers[13]], axis=1)
 target = df[headers[11]]
 
-x_train, x_test, y_train, y_test = split(data, target, test_size=0.25)
+x_train, x_test, y_train, y_test = split(data, target, test_size=0.2)
+
+
+model = RF(n_estimators=25)
 
 model.fit(x_train, y_train)
 
